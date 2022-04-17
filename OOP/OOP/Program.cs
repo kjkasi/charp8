@@ -17,6 +17,15 @@ namespace OOP
             GraphObject.DrawScene();
             GraphObject.ColorScene("Blue");
             GraphObject.DrawScene();
+
+            BankAccount b1 = new BankAccount("Sergey");
+            BankAccount b2 = new BankAccount("Alex");
+            b1.Deposit(1000);
+            BankAccount.Transfer(b1, b2, 300);
+
+            Console.WriteLine(b1);
+            Console.WriteLine(b2);
+
         }
     }
 }
