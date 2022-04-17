@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP
 {
-    class GraphObject
+    class GraphObject: IColorfull
     {
         public const string DEFAULT_COLOR = "black";
         public string Color;
@@ -21,6 +21,17 @@ namespace OOP
             }
         }
 
+        public static void ColorScene(string Color)
+        {
+            foreach(GraphObject obj in scene)
+            {
+                if (obj is IColorfull)
+                {
+                    (obj as IColorfull).setColor(Color);
+                }
+            }
+        }
+
         public GraphObject(string Color = DEFAULT_COLOR)
         {
             this.Color = Color;
@@ -30,6 +41,11 @@ namespace OOP
         public virtual void Draw()
         {
             Console.WriteLine($"GraphObject. {this.Color}");
+        }
+
+        void IColorfull.setColor(string Color)
+        {
+            this.Color = Color;
         }
     }
 }

@@ -15,6 +15,8 @@ namespace OOP
             //c1.Draw();
 
             GraphObject.DrawScene();
+            GraphObject.ColorScene("Blue");
+            GraphObject.DrawScene();
         }
     }
 }
