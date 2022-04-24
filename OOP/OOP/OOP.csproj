@@ -48,6 +48,7 @@
     <Compile Include="GraphObject.cs" />
     <Compile Include="IColorfull.cs" />
     <Compile Include="IScaleable.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

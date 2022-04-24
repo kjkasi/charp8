@@ -6,19 +6,49 @@ using System.Threading.Tasks;
 
 namespace OOP
 {
-    internal class Program
+    public partial class Person
+    {
+        public class Validator
+        {
+
+            protected bool isChecked = false;
+
+            public void Validate(Person p)
+            {
+                Console.WriteLine("Validating person: {0} with birth {1}",
+                    p, p.birthYear);
+            }
+        }
+
+
+        public string EMail { get; set; }
+
+        partial void Validate()
+        {
+            var v = new Validator();
+            v.Validate(this);
+
+        }
+
+        public override string ToString() => $"{Name} : {Age} ({EMail})";
+    }
+
+internal class Program
     {
         static void Main(string[] args)
         {
-            try
-            {
-                Circle c1 = Circle.Create(100, 200, -50);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            
+            Person p1 =
+                    new Person("Сергей", 42) { EMail = "sshuykov@specialist.ru" };
+
+            Console.WriteLine(p1.Age);
+
+
+            Person p2 = new Person("Костя", 14); 
+
+            Person px = new Person();
+            Person.Validator v = new Person.Validator();
+            v.Validate(px);
+
         }
     }
 }
