@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace OOP
 {
-    interface IColorfull
+    interface IScaleable
     {
-        string Color { set; }
+        void Scale(double factor);
+    }
+
+
+
+    interface ISuperScaleable
+    {
+        void Scale(double factor);
     }
 }

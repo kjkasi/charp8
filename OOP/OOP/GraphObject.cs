@@ -6,46 +6,62 @@ using System.Threading.Tasks;
 
 namespace OOP
 {
-    class GraphObject: IColorfull
+    public abstract class GraphObject : IColorfull
     {
         public const string DEFAULT_COLOR = "black";
-        public string Color;
 
-        static List<GraphObject> scene = new List<GraphObject>();
+        public static int SceneSize
+        {
+            get { return scene.Count; }
+        }
+
+        public abstract string Shape { get; }
+
+        private protected string color;
+
+        public string Color
+        {
+            get { return color; }
+            set { color = value; }
+        }
+
+
+        protected static List<GraphObject> scene = new List<GraphObject>();
 
         public static void DrawScene()
         {
-            foreach (GraphObject obj in scene)
+            foreach (var g in scene)
+                g.Draw();
+        }
+
+        public static void ScaleScene(string color)
+        {
+            foreach (GraphObject g in scene)
             {
-                obj.Draw();
+                if (g is IColorfull)
+                {
+                    (g as IColorfull).Color = color;
+                }
             }
         }
 
-        public static void ColorScene(string Color)
+        public static void ScaleScene(double factor)
         {
-            foreach(GraphObject obj in scene)
+            foreach (GraphObject g in scene)
             {
-                if (obj is IColorfull)
+                if (g is IScaleable)
                 {
-                    (obj as IColorfull).setColor(Color);
+                    ((IScaleable)g).Scale(factor);
                 }
             }
+
         }
 
         public GraphObject(string Color = DEFAULT_COLOR)
         {
             this.Color = Color;
-            scene.Add(this);
         }
 
-        public virtual void Draw()
-        {
-            Console.WriteLine($"GraphObject. {this.Color}");
-        }
-
-        void IColorfull.setColor(string Color)
-        {
-            this.Color = Color;
-        }
+        public abstract void Draw();
     }
 }
